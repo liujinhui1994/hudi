@@ -79,7 +79,6 @@ public class HoodieDatasetBulkInsertHelper {
     properties.putAll(config.getProps());
     String keyGeneratorClass = properties.getString(DataSourceWriteOptions.KEYGENERATOR_CLASS().key());
     BuiltinKeyGenerator keyGenerator = (BuiltinKeyGenerator) ReflectionUtils.loadClass(keyGeneratorClass, properties);
-    StructType structTypeForUDF = rows.schema();
 
     sqlContext.udf().register(RECORD_KEY_UDF_FN, (UDF1<Row, String>) keyGenerator::getRecordKey, DataTypes.StringType);
     sqlContext.udf().register(PARTITION_PATH_UDF_FN, (UDF1<Row, String>) keyGenerator::getPartitionPath, DataTypes.StringType);
