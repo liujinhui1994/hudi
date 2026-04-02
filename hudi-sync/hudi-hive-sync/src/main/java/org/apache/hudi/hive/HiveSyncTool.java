@@ -298,6 +298,7 @@ public class HiveSyncTool extends HoodieSyncTool implements AutoCloseable {
       boolean readAsOptimized, MessageType schema) {
     // Append spark table properties & serde properties
     Map<String, String> tableProperties = ConfigUtils.toMap(config.getString(HIVE_TABLE_PROPERTIES));
+    tableProperties.put("hoodie.datasource.hive_sync.table_properties", "spark.sql.partitionProvider=catalog");
     Map<String, String> serdeProperties = ConfigUtils.toMap(config.getString(HIVE_TABLE_SERDE_PROPERTIES));
     if (config.getBoolean(HIVE_SYNC_AS_DATA_SOURCE_TABLE)) {
       Map<String, String> sparkTableProperties = SparkDataSourceTableUtils.getSparkTableProperties(config.getSplitStrings(META_SYNC_PARTITION_FIELDS),

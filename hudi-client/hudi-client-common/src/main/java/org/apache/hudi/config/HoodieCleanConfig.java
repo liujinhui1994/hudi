@@ -61,7 +61,7 @@ public class HoodieCleanConfig extends HoodieConfig {
 
   public static final ConfigProperty<String> CLEANER_COMMITS_RETAINED = ConfigProperty
       .key("hoodie.cleaner.commits.retained")
-      .defaultValue("10")
+      .defaultValue("3")
       .withDocumentation("Number of commits to retain, without cleaning. This will be retained for num_of_commits * time_between_commits "
           + "(scheduled). This also directly translates into how much data retention the table supports for incremental queries.");
 
